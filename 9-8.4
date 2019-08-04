@@ -1,0 +1,35 @@
+    public class Main{
+    public static void main(String args[]){
+        int col=4;
+        int row=4;
+        int[][] a=new int[row][col];
+        for(int i=0;i<col;i++){
+            for(int j=0;j<row;j++){
+                a[i][j]=i+j;
+                System.out.println(a[i][j]);
+            }
+        }
+        Main array=new Main();
+        System.out.println(array.find(a,row,col,6));
+    }
+
+    private  boolean find(int[][]a,int rows,int cols,int target){
+        boolean found=true;
+        if(a!=null&&cols>0&&rows>0){
+            for(int row=0,col=cols-1;row<rows&&col>=0;){
+                if(a[row][col]==target){
+                    found=true;
+                    break;
+                }
+                else if(a[row][col]>target){
+                   col--;
+                }
+                else{
+                    row++;
+                }
+            }
+        }
+        return found;
+    }
+
+}
