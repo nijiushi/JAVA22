@@ -1,0 +1,31 @@
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class Main {
+
+    public  static  void main(String[] args){
+        int[] num={1,2,3,6,8,11};
+        int[] c=find(num,9);
+        System.out.println(Arrays.toString(c));
+
+    }
+
+    public static  int[] find(int[] a,int key){
+        int[] result={1,1};
+        HashMap<Integer,Integer> map=new HashMap<Integer, Integer>();
+        for(int i=0;i<a.length;i++){
+            map.put(a[i],i);
+        }
+        for(int i=0;i<a.length;i++){
+            int two=key-a[i];
+            if(map.containsKey(two)&&key!=2*two){
+                result[0]=i;
+                result[1]=map.get(two);
+                return  result;
+            }
+
+        }
+        return  result;
+    }
+
+}
