@@ -1,0 +1,29 @@
+public class Main{
+
+    public static void main(String[] args){
+        leftCycle("abcdefs",3);
+    }
+
+    public static void leftCycle(String array,int n){
+        int index1=0;
+        int index2=n-1;
+        int index3=n;
+        int index4=array.length()-1;
+        array=reverse(array,index1,index2);//先对n之前的字符串进行逆置
+        array=reverse(array,index3,index4);//同理
+        array=reverse(array,index1,index4);
+        System.out.println(array);
+    }
+
+    public static String reverse(String array,int begin,int end){
+        char[] a=array.toCharArray();
+        while (begin<end){
+            char temp=a[begin];
+            a[begin]=a[end];
+            a[end]=temp;
+            begin++;
+            end--;
+        }
+        return String.copyValueOf(a);
+    }
+}
