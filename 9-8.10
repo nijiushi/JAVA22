@@ -1,0 +1,25 @@
+public class Main{
+
+    public static void main(String[] args){
+        num("abcdefs");
+    }
+
+    public static void num(String array){
+        int index1=0;
+        int index2=array.length()-1;
+        array=reverse(array,index1,index2);
+        System.out.println(array);
+    }
+
+    public static String reverse(String array,int begin,int end){
+        char[] a=array.toCharArray();
+        while (begin<end){
+            char temp=a[begin];
+            a[begin]=a[end];
+            a[end]=temp;
+            begin++;
+            end--;
+        }
+        return String.copyValueOf(a);
+    }
+}
