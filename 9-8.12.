@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sca = new Scanner(System.in);
+        int[] num = new int[5];
+        for (int i = 0; i < num.length; i++) {
+            num[i] = sca.nextInt();
+        }
+        int red=find(num);
+        System.out.println(red);
+    }
+
+    public static int find(int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            int count = 0;
+            for (int j = 0; j < a.length; j++) {
+                if (i == j) {
+                    continue;
+                }
+                if (a[i] == a[j]) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                return a[i];
+            }
+        }
+        return  0;
+    }
+
+}
