@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sca = new Scanner(System.in);
+        int n=sca.nextInt();
+        System.out.println(judge(n));
+
+    }
+
+    public static boolean judge(int a) {
+        if(a<0){
+            return false;
+        }
+        return (a&(a-1))==0;
+    }
+
+}
