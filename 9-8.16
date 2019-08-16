@@ -1,0 +1,67 @@
+##Main.java
+public class Main {
+    public static void main(String[] args) {
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(3);
+        Node n4 = new Node(3);
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n1.random = n2;
+        n2.random = n1;
+        n3.random = n3;
+        Node result = new Copy().copy(n1);
+        for (Node c = result; c != null; c = c.next) {
+            System.out.println(c);
+        }
+    }
+}
+
+## 	Node.java
+class Node{
+    public int val;
+    public Node next;
+    public Node random;
+    public Node(int val){
+        this.val=val;
+    }
+    public String toString(){
+        return String.format("Node(%d)",val);
+    }
+
+}
+
+## Copy.java
+class Copy {
+    Node copy(Node head) {
+        if (head == null) {
+            return null;
+        }
+        Node cur = head;
+        while (cur != null) {
+            Node node = new Node(cur.val);//先进行节点间的复制
+            node.next = cur.next;
+            cur.next = node;
+            cur = node.next;//1-1'-2-2'-3-3'-3-3'（节点复制完成后）
+        }
+        cur = head;
+        while (cur != null) {
+            if (cur.random != null) {
+                cur.next.random = cur.random.next;//找每个节点的random，连接起来
+            }
+            cur = cur.next.next;
+        }
+        cur = head;
+        Node newhead = head.next;
+        while (cur != null) {
+            Node node = cur.next;
+            cur.next = node.next;
+            if (node.next != null) {
+                cur.next = node.next.next;
+            }
+            cur = cur.next;
+        }
+        return newhead;
+    }
+}
